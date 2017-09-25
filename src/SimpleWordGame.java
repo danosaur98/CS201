@@ -8,10 +8,8 @@ public class SimpleWordGame {
 
     public int points(String[] player, String[] dictionary) {
         int score = 0;
-        HashSet<String> playerSet = new HashSet<>();
-        HashSet<String> dictionarySet = new HashSet<>();
-        playerSet.addAll(Arrays.asList(player));
-        dictionarySet.addAll(Arrays.asList(dictionary));
+        HashSet<String> playerSet = new HashSet<>(Arrays.asList(player));
+        HashSet<String> dictionarySet = new HashSet<>(Arrays.asList(dictionary));
         for (String playerW : playerSet) {
             if (dictionarySet.contains(playerW)) {
                 score += Math.pow(playerW.length(), 2);
