@@ -7,12 +7,8 @@ import java.util.TreeMap;
  * Created by Daniel Zhou on 9/25/2017.
  */
 public class IsomorphicWords {
-    public static void main(String[] args) {
-        String[] words = {"aa", "ab", "bb", "cc", "cd"};
-        System.out.println(countPairs(words));
-    }
 
-    public static int countPairs(String[] words) {
+    public int countPairs(String[] words) {
         int ret = 0;
         for (int i = 0; i < words.length; i++) {
             for (int j = i + 1; j < words.length; j++) {
@@ -23,7 +19,7 @@ public class IsomorphicWords {
                 char[] c2 = s2.toCharArray();
                 for (int k = 0; k < c1.length; k++) {
                     if (map.containsValue(c2[k])) {
-                        break;
+                        continue;
                     }
                     if (!map.containsKey(c1[k])) {
                         map.put(c1[k], c2[k]);
@@ -38,11 +34,21 @@ public class IsomorphicWords {
                         }
                     }
                 }
-                if (Arrays.equals(c1, c2)) {
+
+                if (Arrays.equals(c1, c2) && allSwitched(switched)) {
                     ret++;
                 }
             }
         }
         return ret;
+    }
+
+    public boolean allSwitched(boolean[] b) {
+        for (int p = 0; p < b.length; p++) {
+            if (!b[p]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
